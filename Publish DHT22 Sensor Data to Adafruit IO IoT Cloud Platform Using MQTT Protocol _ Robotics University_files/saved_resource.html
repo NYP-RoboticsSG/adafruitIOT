@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0492)https://www.robotics-university.com/safeview-redirect/tc_frame.html?dt=PCFET0NUWVBFIGh0bWwgUFVCTElDICItLy9XM0MvL0RURCBYSFRNTCAxLjAgVHJhbnNpdGlvbmFsLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL1RSL3hodG1sMS9EVEQveGh0bWwxLXRyYW5zaXRpb25hbC5kdGQiPg%3D%3D&n=6f7ebcac&furl=aHR0cHM6Ly9wYXN0ZWJpbi5jb20vZW1iZWRfaWZyYW1lL2g4YjIzTUFu&turl=aHR0cHM6Ly93d3cucm9ib3RpY3MtdW5pdmVyc2l0eS5jb20vMjAxOS8wNS9wdWJsaXNoLWRodDIyLXNlbnNvci1kYXRhLXRvLWFkYWZydWl0LWlvLWlvdC1jbG91ZC1wbGF0Zm9ybS11c2luZy1tcXR0LXByb3RvY29sLmh0bWw%3D -->
+<html tc-nonce="6f7ebcac" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css" id="__safly_default_style">
+object {display: inline-block;}
+object:not([width]) {width: 100%;}
+object:not([height]) {height: 100%;}
+.__safly_input_chrome::-webkit-search-cancel-button {display: none;}
+.__safly_input_ms::-ms-clear {display: none;}
+</style>
+        
+        <meta name="robots" content="noindex,follow">
+        <meta name="robots" content="noarchive">
+        <style>
+            body { font-family: monospace; padding: 0; margin: 0; }
+            div.embedPastebin { padding: 0; color: #000; margin: 0; font-family: monospace; background: #F7F7F7; border: 1px solid ddd; border-radius:3px; }
+            html.embedPBBody div.embedPastebin { border: none; }
+            div.embedPastebin div.embedFooter { background: #F7F7F7; color: #333; font-size: 100%; padding: 6px 12px; border-bottom: 1px solid #ddd; text-transform:uppercase; }
+            div.embedPastebin div.embedFooter a,
+            div.embedPastebin div.embedFooter a:visited { color: #336699; text-decoration:none; }
+            div.embedPastebin div.embedFooter a:hover { color: red; }
+            .noLines ol { list-style-type: none; padding-left: 0.5em; }
+            .embedPastebin{background-color:#F8F8F8;border:1px solid #ddd;font-size:12px;overflow:auto;margin: 0 0 0 0;padding:0 0 0 0;line-height:21px}
+            .embedPastebin div { line-height:21px; font-family:Consolas, Menlo, Monaco, Lucida Console,'Bitstream Vera Sans Mono','Courier',monospace; }
+            ol { margin:0; padding: 0 0 0 55px}
+            ol li { border:0; margin:0;padding:0; }
+            li.ln-xtra .de1, li.ln-xtra .de2 {background:#F8F8CE;}
+            .embedPastebin ol li.li1 { margin: 0; }
+            .embedPastebin ol li.li2 { margin: 0; }
+        </style>
+                <link href="./aHR0cHM6Ly9wYXN0ZWJpbi5jb20vdGhlbWVzL3Bhc3RlYmluL2Nzcy9nZXNoaS9saWdodC9jcHAuY3NzPzY5NDcwN2Y5ODAwMGVkMjRkODY1" rel="stylesheet">
+    </head>
+    <body class="">
+        <div class="embedPastebin">
+                            <div class="embedFooter">Data hosted with ♥ by <a href="https://pastebin.com/" target="_blank">Pastebin.com</a> - <a href="https://pastebin.com/raw/h8b23MAn" target="_blank">Download Raw</a> - <a href="https://pastebin.com/h8b23MAn" target="_blank">See Original</a></div>
+            
+            <div class="highlighted-code">
+                <div class="source">
+                    <ol class="cpp"><li class="li1"><div class="de1"><span class="co2">#include &lt;SimpleDHT.h&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></div></li>
+<li class="li1"><div class="de1"><span class="co2">#include &lt;WiFi.h&gt;</span></div></li>
+<li class="li1"><div class="de1"><span class="co2">#include "Adafruit_MQTT.h"</span></div></li>
+<li class="li1"><div class="de1"><span class="co2">#include "Adafruit_MQTT_Client.h"</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="co1">// WiFi parameters</span></div></li>
+<li class="li1"><div class="de1"><span class="co2">#define WLAN_SSID &nbsp; &nbsp; &nbsp; "TYPE_YOUR_WIFI_SSID_HERE"</span></div></li>
+<li class="li1"><div class="de1"><span class="co2">#define WLAN_PASS &nbsp; &nbsp; &nbsp; "TYPE_YOUR_WIFI_PASSWORD_HERE"</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="co1">// Adafruit IO setup</span></div></li>
+<li class="li1"><div class="de1"><span class="co2">#define AIO_SERVER &nbsp; &nbsp; &nbsp;"io.adafruit.com" &nbsp; // Adafruit IO Cloud Platform server for IoT</span></div></li>
+<li class="li1"><div class="de1"><span class="co2">#define AIO_SERVERPORT &nbsp;1883</span></div></li>
+<li class="li1"><div class="de1"><span class="co2">#define AIO_USERNAME &nbsp; &nbsp;"TYPE_YOUR_ADAFRUIT_IO_USERNAME_HERE"</span></div></li>
+<li class="li1"><div class="de1"><span class="co2">#define AIO_KEY &nbsp; &nbsp; &nbsp; &nbsp; "TYPE_YOUR_ADAFRUIT_IO_KEY_HERE" </span></div></li>
+<li class="li1"><div class="de1">WiFiClient client<span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="co1">// Setup the MQTT client class by passing in the WiFi client and MQTT server and login details.</span></div></li>
+<li class="li1"><div class="de1">Adafruit_MQTT_Client mqtt<span class="br0">(</span><span class="sy3">&amp;</span>client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO_KEY<span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">Adafruit_MQTT_Publish Temperature <span class="sy1">=</span> Adafruit_MQTT_Publish<span class="br0">(</span><span class="sy3">&amp;</span>mqtt, AIO_USERNAME <span class="st0">"/feeds/Temperature"</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">Adafruit_MQTT_Publish Humidity <span class="sy1">=</span> Adafruit_MQTT_Publish<span class="br0">(</span><span class="sy3">&amp;</span>mqtt, AIO_USERNAME <span class="st0">"/feeds/Humidity"</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="kw4">int</span> pinDHT22 <span class="sy1">=</span> <span class="nu0">15</span><span class="sy4">;</span> &nbsp; &nbsp;<span class="co1">// Connect your DHT22 data pin here!</span></div></li>
+<li class="li1"><div class="de1">SimpleDHT22 dht22<span class="br0">(</span>pinDHT22<span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">byte hum <span class="sy1">=</span> <span class="nu0">0</span><span class="sy4">;</span> &nbsp;<span class="co1">//Stores humidity value</span></div></li>
+<li class="li1"><div class="de1">byte temp <span class="sy1">=</span> <span class="nu0">0</span><span class="sy4">;</span> <span class="co1">//Stores temperature value</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="kw4">void</span> setup<span class="br0">(</span><span class="br0">)</span> </div></li>
+<li class="li1"><div class="de1"><span class="br0">{</span></div></li>
+<li class="li1"><div class="de1">&nbsp; Serial.<span class="me1">begin</span><span class="br0">(</span><span class="nu0">115200</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Adafruit IO Example"</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; <span class="co1">// Connect to WiFi access point.</span></div></li>
+<li class="li1"><div class="de1">&nbsp; Serial.<span class="me1">println</span><span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span> Serial.<span class="me1">println</span><span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; delay<span class="br0">(</span><span class="nu0">10</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; Serial.<span class="me1">print</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Connecting to "</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; Serial.<span class="me1">println</span><span class="br0">(</span>WLAN_SSID<span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; WiFi.<span class="me1">begin</span><span class="br0">(</span>WLAN_SSID, WLAN_PASS<span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; <span class="kw1">while</span> <span class="br0">(</span>WiFi.<span class="me1">status</span><span class="br0">(</span><span class="br0">)</span> <span class="sy3">!</span><span class="sy1">=</span> WL_CONNECTED<span class="br0">)</span> </div></li>
+<li class="li1"><div class="de1">&nbsp; <span class="br0">{</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; delay<span class="br0">(</span><span class="nu0">500</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; Serial.<span class="me1">print</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"."</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; <span class="br0">}</span></div></li>
+<li class="li1"><div class="de1">&nbsp; Serial.<span class="me1">println</span><span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"WiFi connected"</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"IP address: "</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; Serial.<span class="me1">println</span><span class="br0">(</span>WiFi.<span class="me1">localIP</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1">&nbsp; <span class="co1">// connect to adafruit io</span></div></li>
+<li class="li1"><div class="de1">&nbsp; connect<span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">}</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="co1">// connect to adafruit io via MQTT</span></div></li>
+<li class="li1"><div class="de1"><span class="kw4">void</span> connect<span class="br0">(</span><span class="br0">)</span> </div></li>
+<li class="li1"><div class="de1"><span class="br0">{</span></div></li>
+<li class="li1"><div class="de1">&nbsp; Serial.<span class="me1">print</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Connecting to Adafruit IO... "</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; <span class="kw4">int8_t</span> ret<span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; <span class="kw1">while</span> <span class="br0">(</span><span class="br0">(</span>ret <span class="sy1">=</span> mqtt.<span class="me1">connect</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span> <span class="sy3">!</span><span class="sy1">=</span> <span class="nu0">0</span><span class="br0">)</span> </div></li>
+<li class="li1"><div class="de1">&nbsp; <span class="br0">{</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; <span class="kw1">switch</span> <span class="br0">(</span>ret<span class="br0">)</span> </div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; <span class="br0">{</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; <span class="kw1">case</span> <span class="nu0">1</span><span class="sy4">:</span> Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Wrong protocol"</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span> <span class="kw1">break</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; <span class="kw1">case</span> <span class="nu0">2</span><span class="sy4">:</span> Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"ID rejected"</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span> <span class="kw1">break</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; <span class="kw1">case</span> <span class="nu0">3</span><span class="sy4">:</span> Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Server unavail"</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span> <span class="kw1">break</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; <span class="kw1">case</span> <span class="nu0">4</span><span class="sy4">:</span> Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Bad user/pass"</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span> <span class="kw1">break</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; <span class="kw1">case</span> <span class="nu0">5</span><span class="sy4">:</span> Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Not authed"</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span> <span class="kw1">break</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; <span class="kw1">case</span> <span class="nu0">6</span><span class="sy4">:</span> Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Failed to subscribe"</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span> <span class="kw1">break</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; <span class="kw1">default</span><span class="sy4">:</span> Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Connection failed"</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span> <span class="kw1">break</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; <span class="br0">}</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; <span class="kw1">if</span><span class="br0">(</span>ret <span class="sy1">&gt;=</span> <span class="nu0">0</span><span class="br0">)</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; mqtt.<span class="me1">disconnect</span><span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Retrying connection..."</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; delay<span class="br0">(</span><span class="nu0">10000</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; <span class="br0">}</span></div></li>
+<li class="li1"><div class="de1">&nbsp; Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Adafruit IO Connected!"</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">}</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+<li class="li1"><div class="de1"><span class="kw4">void</span> loop<span class="br0">(</span><span class="br0">)</span> </div></li>
+<li class="li1"><div class="de1"><span class="br0">{</span></div></li>
+<li class="li1"><div class="de1">&nbsp; <span class="co1">// ping adafruit io a few times to make sure we remain connected</span></div></li>
+<li class="li1"><div class="de1">&nbsp; <span class="kw1">if</span><span class="br0">(</span><span class="sy3">!</span> mqtt.<span class="me1">ping</span><span class="br0">(</span><span class="nu0">3</span><span class="br0">)</span><span class="br0">)</span> </div></li>
+<li class="li1"><div class="de1">&nbsp; <span class="br0">{</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; <span class="co1">// reconnect to adafruit io</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; <span class="kw1">if</span><span class="br0">(</span><span class="sy3">!</span> mqtt.<span class="me1">connected</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; connect<span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; <span class="br0">}</span></div></li>
+<li class="li1"><div class="de1">&nbsp; dht22.<span class="me1">read</span><span class="br0">(</span><span class="sy3">&amp;</span>temp, <span class="sy3">&amp;</span>hum, <span class="kw2">NULL</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; Serial.<span class="me1">print</span><span class="br0">(</span><span class="br0">(</span><span class="kw4">int</span><span class="br0">)</span>temp<span class="br0">)</span><span class="sy4">;</span> Serial.<span class="me1">print</span><span class="br0">(</span><span class="st0">" *C, "</span><span class="br0">)</span><span class="sy4">;</span> </div></li>
+<li class="li1"><div class="de1">&nbsp; Serial.<span class="me1">print</span><span class="br0">(</span><span class="br0">(</span><span class="kw4">int</span><span class="br0">)</span>hum<span class="br0">)</span><span class="sy4">;</span> Serial.<span class="me1">println</span><span class="br0">(</span><span class="st0">" H"</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; delay<span class="br0">(</span><span class="nu0">5000</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp;</div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp;<span class="kw1">if</span> <span class="br0">(</span><span class="sy3">!</span> Temperature.<span class="me1">publish</span><span class="br0">(</span>temp<span class="br0">)</span><span class="br0">)</span> <span class="br0">{</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="co1">//Publish Temperature data to Adafruit</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Failed"</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; <span class="br0">}</span> </div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; &nbsp;<span class="kw1">if</span> <span class="br0">(</span><span class="sy3">!</span> Humidity.<span class="me1">publish</span><span class="br0">(</span>hum<span class="br0">)</span><span class="br0">)</span> <span class="br0">{</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="co1">//Publish Humidity data to Adafruit</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Failed"</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; <span class="br0">}</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; <span class="kw1">else</span> <span class="br0">{</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; Serial.<span class="me1">println</span><span class="br0">(</span>F<span class="br0">(</span><span class="st0">"Sent!"</span><span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span></div></li>
+<li class="li1"><div class="de1">&nbsp; &nbsp; <span class="br0">}</span></div></li>
+<li class="li1"><div class="de1"><span class="br0">}</span></div></li>
+<li class="li1"><div class="de1">&nbsp;</div></li>
+</ol>                </div>
+            </div>
+        </div>
+    
+</body>
+</html>
